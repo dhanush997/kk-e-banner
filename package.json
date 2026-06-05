@@ -4,10 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node copy-bg.js && vite",
-    "build": "node copy-bg.js && vite build",
+    "dev": "node copy-bg.js && node node_modules/vite/bin/vite.js",
+    "build": "node copy-bg.js && node node_modules/vite/bin/vite.js build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "node node_modules/vite/bin/vite.js preview"
   },
   "dependencies": {
     "@react-three/drei": "^9.92.7",
