@@ -1,0 +1,315 @@
+/* Fashion Design System (H&M Inspired) */
+:root {
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* H&M Minimalist Fashion Palette */
+  --bg-main: #0a0a0f;
+  --bg-card: rgba(255, 255, 255, 0.90);
+  --border-glass: rgba(0, 0, 0, 0.08);
+  --border-stark: #111111;
+
+  --accent-red: #e50010;   /* H&M Signature Red */
+  --accent-gold: #b89874;  /* Editorial Gold */
+
+  --text-primary: #111111;
+  --text-secondary: #333333;
+  --text-muted: #767676;
+  
+  --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+/* App Container with Flagship Store background */
+.app-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 1.5rem;
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* Blurring the flagship department store boutique for visual depth */
+/* Checks for local /flagship_store_bg.png first, falls back to web address */
+.app-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(10, 10, 15, 0.45), rgba(10, 10, 15, 0.65)), 
+    url('/flagship_store_bg.png'),
+    url('https://images.unsplash.com/photo-1481437156560-3205fa655a36?q=80&w=1600&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center center;
+  filter: blur(5px) scale(1.02) brightness(0.6);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Studio Floor Grid Overlay */
+.grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+  background-position: center center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 3D Canvas Background */
+.canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+/* Editorial Content Wrapper */
+.content-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  z-index: 20;
+  pointer-events: none;
+  animation: editorialFadeIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.content-wrapper * {
+  pointer-events: auto;
+}
+
+@keyframes editorialFadeIn {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Minimalist Editorial Card */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 0; /* Stark geometric edges for high fashion luxury */
+  padding: 4.5rem 3rem;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+
+/* Red Accent Header Line */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--accent-red);
+}
+
+/* Brand Logo Image Containers */
+.logo-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  margin-bottom: 1.25rem;
+  width: 100%;
+}
+
+.brand-logo-img {
+  max-height: 90px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply; /* Removes white background so it floats cleanly */
+  user-select: none;
+  animation: logoFloat 4s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Playfair Display High-Fashion Overlapping H&M-Style Logo */
+.logo-text-hm {
+  font-family: var(--font-display);
+  font-size: 5.5rem;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--accent-red);
+  letter-spacing: -0.06em;
+  transform: skewX(-8deg);
+  line-height: 0.95;
+  margin-bottom: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  filter: drop-shadow(1px 2px 1px rgba(0, 0, 0, 0.04));
+}
+
+.logo-text-hm span {
+  margin-left: -0.02em; /* brings them closer together for overlapping style */
+}
+
+.brand-subtitle {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--text-primary);
+  margin-bottom: 1.75rem;
+}
+
+/* Badge Style */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid #c2c2c2;
+  color: var(--text-secondary);
+  padding: 0.35rem 0.85rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--accent-red);
+  box-shadow: 0 0 6px var(--accent-red);
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Heading Typography */
+.main-title {
+  font-family: var(--font-display);
+  font-size: 2.15rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.25rem;
+  color: var(--text-primary);
+  text-transform: capitalize;
+}
+
+.description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  max-width: 380px;
+  margin-bottom: 2rem;
+}
+
+/* Social Footer */
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  margin-top: 1rem;
+}
+
+.social-icon-btn {
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.social-icon-btn:hover {
+  color: var(--accent-red);
+  transform: translateY(-2px);
+}
+
+/* Responsiveness (Sleek Mobile Adjustments) */
+@media (max-width: 640px) {
+  .app-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .content-wrapper {
+    max-width: 92%;
+  }
+
+  .glass-card {
+    padding: 3.5rem 1.5rem 3rem 1.5rem;
+  }
+  
+  .logo-img-container {
+    height: 85px;
+  }
+
+  .brand-logo-img {
+    max-height: 75px;
+  }
+
+  .logo-text-hm {
+    font-size: 4.5rem;
+  }
+
+  .main-title {
+    font-size: 1.75rem;
+  }
+  
+  .description {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer-links {
+    margin-top: 0.5rem;
+  }
+}
+canvas {
+  touch-action: none;
+}

@@ -1,0 +1,1 @@
+This directory holds public assets. Copy your generated image 'flagship_store_bg_1780679326638.png' to this folder and rename it to 'flagship_store_bg.png' to load the flagship store clothing background locally.
